@@ -13,6 +13,5 @@ public class GameController {
     public void startgame(MouseEvent event) throws IOException {
         AnchorPane start = FXMLLoader.load(getClass().getResource("PlayArea.fxml"));
         Main.root.getChildren().setAll(start);
-
     }
 }

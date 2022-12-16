@@ -1,6 +1,7 @@
 package game.snake_ladder;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -19,6 +20,8 @@ public class PlayAreaController
         Text changeturn;
     @FXML
     ImageView blue_position,red_position;
+
+
     int turn=1;
     HashMap<Pair<Double,Double>,Pair<Double,Double>> snake_ladder_coordinates;
     @FXML
@@ -55,6 +58,8 @@ public class PlayAreaController
             {
                 turn =2;
                 changeturn.setText("Player 2's turn now !");
+
+
             }
         }
         else
@@ -63,6 +68,7 @@ public class PlayAreaController
             {
                 turn =1;
                 changeturn.setText("Player 1's turn now !");
+
             }
         }
 
@@ -112,14 +118,19 @@ public class PlayAreaController
         }
         return new Pair<>(newx,newy);
     }
-    boolean checkwin(int playerno,Double x,Double y)
-    {
+    void checkwin(int playerno,Double x,Double y) throws IOException {
         if(x==55 && y==-495)
         {
 //            System.out.println("Player" + playerno + " is winner !");
-            return true;
+            Alert winalert = new Alert(Alert.AlertType.INFORMATION);
+            {
+                winalert.setContentText("Player " + playerno + " won !");
+                winalert.showAndWait();
+                GamePage page = new GamePage();
+                Main.root.getChildren().setAll(page.root);
+
+            }
         }
-        return false;
     }
     void getSnakeLadderCoodinates()
     {
@@ -150,17 +161,3 @@ public class PlayAreaController
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
